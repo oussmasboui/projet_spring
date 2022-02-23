@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -38,7 +37,6 @@ public class Recompence implements Serializable{
 	private TypeRecompence typeRecompence;
 	
 	@ManyToOne
-
 
 	@JsonIgnore
 

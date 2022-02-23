@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -32,6 +31,7 @@ public class Metrique implements Serializable {
 	private String commitment;
 	
 	@OneToOne
+
 
 
 	@JsonIgnore
