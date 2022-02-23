@@ -28,8 +28,8 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Pidev")
-				.description("\"Pidev Swagger configuration\"")
+				.title("Examen Blanc")
+				.description("\"Examen Blanc Swagger configuration\"")
 				.version("1.1.0")
 				.build();
 	}

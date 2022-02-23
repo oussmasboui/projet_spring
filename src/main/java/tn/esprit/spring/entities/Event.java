@@ -1,17 +1,15 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.ManyToMany;
+import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,29 +19,19 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class Recompence implements Serializable{
-	
-	
+
+public class Event implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private long idRecompence;
-	
-	
-	private int nbrRecompence;
-	@Enumerated(EnumType.STRING)
-	private TypeRecompence typeRecompence;
-	
-	@ManyToOne
-    private User user;
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private int  idevent;
+	private String eventtype;
+	private int numinvité;
+	private String entrepriseName;
+	private String partenaire;
+	private String lieu;
+	private Date dateevent;
+	@ManyToMany
+	private Set<User> user;
 	
 
 }
