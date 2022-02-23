@@ -43,7 +43,6 @@ public class OpportunityServiceImpl implements IOpportunityService {
 
 		return opportunityRepo.findById(idOpportunity).orElse(null);
 	}
-
 	
 	@Override
 	public Opportunity updateOpportunityById(Opportunity o,Long idOpportunity) {
