@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+
+
+
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,9 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;

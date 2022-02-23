@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +19,18 @@ import tn.esprit.spring.entities.Opportunity;
 import tn.esprit.spring.entities.Travel;
 import tn.esprit.spring.service.OpportunityServiceImpl;
 import tn.esprit.spring.service.TravelServiceImpl;
+import tn.esprit.spring.entities.Opportunity;
+
+import tn.esprit.spring.service.IOpportunityService;
+
 
 @RestController 
 @RequestMapping("/opportunity") 
 public class OpportunityRestController {
 
 	@Autowired
-  OpportunityServiceImpl opportunityservice;
+
+  IOpportunityService opportunityservice;
 	
 	// http://localhost:8089/SpringMVC/opportunity/retrieve-all-opportunities 
 	
@@ -76,4 +83,13 @@ public class OpportunityRestController {
 					opportunityservice.updateOpportunityById(o, idOpportunity);
 		}
 		
+		
+		
+		
+		//http://localhost:8089/SpringMVC/opportunity/modify-oppotunity-byID/2
+				@PutMapping("/modify-oppotunity-byID/{opportunity-id}")
+				@ResponseBody
+				public Opportunity ModifyOpportunityById(@PathVariable("opportunity-id") Long idOpportunity,@RequestBody Opportunity o) {
+				return opportunityservice.updateOpportunityById(o, idOpportunity);
+				}
 }

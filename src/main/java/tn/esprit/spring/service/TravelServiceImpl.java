@@ -49,8 +49,13 @@ public class TravelServiceImpl implements ITravelService {
 	
 		Travel found= travelRepo.findById(idTravel).orElse(null);
 		found.setDestination(t.getDestination());
+
+		found.setStartDate(t.getStartDate());
 		found.setEndDate(t.getEndDate());
-	travelRepo.saveAndFlush(found);
+		found.setObjet(t.getObjet());
+		found.setTravelplannings(t.getTravelplannings());
+		found.setUser(t.getUser());
+	    travelRepo.saveAndFlush(found);
 		return found;
 	}
 

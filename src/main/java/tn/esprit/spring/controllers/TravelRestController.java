@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,9 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import tn.esprit.spring.entities.Travel;
 import tn.esprit.spring.service.ITravelService;
 import tn.esprit.spring.service.TravelServiceImpl;
+import tn.esprit.spring.entities.Travel;
+import tn.esprit.spring.service.ITravelService;
+
 
 
 @RestController 
@@ -23,7 +28,8 @@ import tn.esprit.spring.service.TravelServiceImpl;
 public class TravelRestController {
 
 	@Autowired
-  TravelServiceImpl travelservice;
+
+  ITravelService travelservice;
 	// http://localhost:8089/SpringMVC/travel/retrieve-all-travels 
 	
 	@GetMapping("/retrieve-all-travels") 
@@ -73,7 +79,8 @@ public class TravelRestController {
 		//http://localhost:8089/SpringMVC/travel/modify-travel-byID/2
 		@PutMapping("/modify-travel-byID/{travel-id}")
 		@ResponseBody
-		public Travel removeTravel(@PathVariable("travel-id") Long idTravel,@RequestBody Travel t) {
+
+		public Travel ModifyTravelById(@PathVariable("travel-id") Long idTravel,@RequestBody Travel t) {
 		return travelservice.updateTravelById(t, idTravel);
 		}
 		

@@ -44,12 +44,20 @@ public class OpportunityServiceImpl implements IOpportunityService {
 		return opportunityRepo.findById(idOpportunity).orElse(null);
 	}
 
+	
 	@Override
 	public Opportunity updateOpportunityById(Opportunity o,Long idOpportunity) {
-		// TODO Auto-generated method stub
-		Opportunity found= opportunityRepo.findById(idOpportunity).orElse(null);
-		found=opportunityRepo.save(o);
-		return found;
+	
+		Opportunity opp= opportunityRepo.findById(idOpportunity).orElse(null);
+		opp.setDescription(o.getDescription());
+		opp.setDate(o.getDate());
+		opp.setType(o.getType());
+		opp.setUser(o.getUser());
+	opportunityRepo.saveAndFlush(opp);
+	return opp;
 	}
+
+
+	
 
 }
