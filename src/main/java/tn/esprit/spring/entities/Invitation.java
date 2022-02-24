@@ -25,4 +25,6 @@ public class Invitation implements Serializable {
 	private boolean state;
 	@ManyToOne
 	private User user;
+	
+	//aicha
 }
