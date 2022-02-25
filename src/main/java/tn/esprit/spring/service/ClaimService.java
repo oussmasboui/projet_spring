@@ -6,7 +6,7 @@ import tn.esprit.spring.entities.Claim;
 
 
 public interface ClaimService {
-	 Claim addClaim( Claim c);
+	 Claim addClaim( Claim c,Long iduser);
 	 
 	 
 		List<Claim> retrieveAllClaim();

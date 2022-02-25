@@ -29,11 +29,11 @@ public class InvitationController {
 	
 	
 	
-	@PostMapping("/addInvitation")
+	@PostMapping("/addInvitation/{id}")
 	@ResponseBody
-	public Invitation addInvitation(@RequestBody Invitation c)
+	public Invitation addInvitation(@RequestBody Invitation c,@PathVariable("id") Long id)
 	{
-		return cs.addInvitation(c);
+		return cs.addInvitation(c,id);
 	}
 	
 	

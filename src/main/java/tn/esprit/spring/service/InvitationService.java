@@ -6,7 +6,8 @@ import java.util.List;
 import tn.esprit.spring.entities.Invitation;
 
 public interface InvitationService {
-	Invitation addInvitation(Invitation c);
+
+	Invitation addInvitation(Invitation c,Long iduser);
 	List<Invitation> retrieveAllInvitation();
 	void deleteInvitation(Long id);
 	Invitation updateInvitation(Invitation c);

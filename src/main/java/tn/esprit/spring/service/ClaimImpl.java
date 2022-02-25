@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Claim;
 import tn.esprit.spring.entities.Invitation;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.ClaimRepository;
+import tn.esprit.spring.repository.UserRepository;
 
 
 @Service
@@ -16,11 +18,9 @@ public class  ClaimImpl implements ClaimService {
 	@Autowired
 	ClaimRepository repository;
 
-	@Override
-	public Claim addClaim(Claim c) {
-		// TODO Auto-generated method stub
-		return repository.save(c);
-	}
+	@Autowired
+	UserRepository ur;
+
 
 	@Override
 	public List<Claim> retrieveAllClaim() {
@@ -58,6 +58,16 @@ repository.saveAndFlush(cl);
 
 
 return cl;
+	}
+
+	@Override
+	public Claim addClaim(Claim c, Long iduser) {
+		
+		User u= ur.findById(iduser).get();
+		c.setUser(u);
+		repository.save(c);
+		
+		return c;
 	}
 	
 	

@@ -7,19 +7,23 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Claim;
 import tn.esprit.spring.entities.Invitation;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.InvitationRepository;
+import tn.esprit.spring.repository.UserRepository;
 
 @Service
 
 public class InvitationImpl implements InvitationService  {
 	@Autowired
 	InvitationRepository repository;
+	@Autowired
+	UserRepository ur;
 
-	@Override
-	public Invitation addInvitation(Invitation c) {
-		// TODO Auto-generated method stub
-		return  repository.save(c);
-	}
+	//@Override
+	//public Invitation addInvitation(Invitation c) {
+		//// TODO Auto-generated method stub
+		//return  repository.save(c);
+	//}
 
 	@Override
 	public List<Invitation> retrieveAllInvitation() {
@@ -64,7 +68,17 @@ public class InvitationImpl implements InvitationService  {
 		
 		
 	}
-	
+
+	@Override
+	public Invitation addInvitation(Invitation c, Long iduser) {
+		// TODO Auto-generated method stub
+		User u= ur.findById(iduser).get();
+		c.setUser(u);
+		repository.save(c);
+		
+		return c;
+	}
+
 	
 	
 	

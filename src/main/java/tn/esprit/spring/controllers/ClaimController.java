@@ -42,11 +42,11 @@ public class ClaimController {
 	
 	
 	
-	@PostMapping("/addClaim")
+	@PostMapping("/addClaim/{id}")
 	@ResponseBody
-	public Claim addClaim(@RequestBody Claim c)
+	public Claim addClaim(@RequestBody Claim c,@PathVariable("id") Long id)
 	{
-		return cs.addClaim(c);
+		return cs.addClaim(c,id);
 	}
 	
 	
@@ -69,6 +69,7 @@ public class ClaimController {
 		cs.deleteClaim(idClaim);
 	}
   	
+	
   	
 
 	

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -23,6 +25,7 @@ public class Invitation implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long idInvitation;
 	private boolean state;
+	@JsonIgnore
 	@ManyToOne
 	private User user;
 	
