@@ -1,13 +1,19 @@
 package tn.esprit.spring.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Claim;
 import tn.esprit.spring.entities.Invitation;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.ClaimRepository;
+import tn.esprit.spring.repository.UserRepository;
 
 
 @Service
@@ -16,11 +22,9 @@ public class  ClaimImpl implements ClaimService {
 	@Autowired
 	ClaimRepository repository;
 
-	@Override
-	public Claim addClaim(Claim c) {
-		// TODO Auto-generated method stub
-		return repository.save(c);
-	}
+	@Autowired
+	UserRepository ur;
+
 
 	@Override
 	public List<Claim> retrieveAllClaim() {
@@ -52,14 +56,67 @@ public class  ClaimImpl implements ClaimService {
 cl.setDate(o.getDate());
 
 cl.setDescription(o.getDescription());
-
-repository.saveAndFlush(cl);
+cl.setSubject(o.getSubject());
+//repository.saveAndFlush(cl);
 
 
 
 return cl;
 	}
+
+	@Override
+	public Claim addClaim(Claim c, Long iduser) {
+		
+		User u= ur.findById(iduser).get();
+		c.setUser(u);
+		c.setEtat(false);
+		if(this.badWords(c))
+		{
+		repository.save(c);
+		} else 
+			System.out.println("non ajoutée");
+		return c;
+	}
+
+	@Override
+	public Page<Claim> findBysubject(String subject, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return repository.findBysubject(subject, pageable);
+	}
+
+	@Override
+	public void claimCheck(Long idClaim) {
+
+           Claim c=repository.findById(idClaim).get();	
+           c.setEtat(true);
+           repository.save(c);
+	}
+
+	@Override
+	public Boolean badWords(Claim c) {
+		String description = c.getDescription();
+		 List<String >bw= new ArrayList<String>();
+		 bw.add("fuck");
+		 bw.add("shit");
+
+         for(String i:bw)
+         {
+        	 if (description.contains(i)){
+        		 return false;
+        	 }
+         }
+        	 
+		return true;
+	}
+
 	
+
+	//@Override
+	//public Page<Claim> findBysubject(String subject, Pageable pageable) {
+		// TODO Auto-generated method stub
+	//	return repository.findBysubject(subject,pageable);
+	}
+
 	
 	
 	
@@ -68,4 +125,3 @@ return cl;
 
 	
 	
-}

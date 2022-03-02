@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,10 +26,15 @@ public class Claim implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long idClaim;
+	private String subject;
 	private String description;
 	@Temporal(TemporalType.DATE)
     private Date date;
+	private Boolean etat;
+	
+	@JsonIgnore
     @ManyToOne
+   
     private User user;
    
 }
