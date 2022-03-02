@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserImpl implements UserService {
 
 	@Override
 	public User addUser(User u) {
+		// u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
 	        ur.save(u);
 	        return u;
 	}
@@ -46,6 +48,23 @@ public class UserImpl implements UserService {
 	public User retrieveUser(Long id) {
 		User u=ur.findById(id).get();
 		return u;
+	}
+	 @Override
+	    public Optional<User> FindUserByEmail(String email) {
+	        return ur.findUserByEmail(email);
+	    }
+	@Override
+	public List<User> filterByDomain(String domain) {
+		return ur.filterByDomain(domain);
+	}
+	@Override
+	public List<User> orderByName() {
+		return ur.orderByName();
+	}
+	@Override
+	public Boolean authenticate(String email, String password) {
+        User u=
+		return null;
 	}
 	
 	
