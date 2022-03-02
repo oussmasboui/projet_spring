@@ -21,6 +21,7 @@ public class PostService implements IPostService {
 
 	@Override
 	public Post addPost(Post p) {
+		
 		return postRepository.save(p);
 	}
 

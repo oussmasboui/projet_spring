@@ -14,8 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.lang.StringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,9 +28,10 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
+
+@Table(name="user")
 public class User implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -72,7 +75,7 @@ public class User implements Serializable{
 	private Set<Travel> travels;
 	
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	@ManyToMany(cascade=CascadeType.ALL)
 	private Set<Invitation> invitations;
 	
 	@JsonIgnore

@@ -26,11 +26,15 @@ public class Claim implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long idClaim;
+	private String subject;
 	private String description;
 	@Temporal(TemporalType.DATE)
     private Date date;
+	private Boolean etat;
+	
+	@JsonIgnore
     @ManyToOne
-    @JsonIgnore
+   
     private User user;
    
 }
