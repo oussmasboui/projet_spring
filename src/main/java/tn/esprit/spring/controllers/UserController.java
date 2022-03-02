@@ -1,6 +1,7 @@
 package tn.esprit.spring.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.User;
@@ -53,6 +55,23 @@ public class UserController {
 	return user;  
 	}  
 	
+	
+	@GetMapping("/find-user-by-email/{email}")
+    public Optional<User> find_user_by_email(@PathVariable("email") String email){
+        return userservice.FindUserByEmail(email);
+    }
+	
+	
+	@GetMapping("/filter-by-domain/{domain}")
+    public List<User> filterByDomain(@PathVariable("domain") String domain){
+        return userservice.filterByDomain(domain);
+    }
+	
+	
+	@GetMapping("/orderByName")
+    public List<User> orderByName(){
+        return userservice.orderByName();
+    }
 	
 	
 
