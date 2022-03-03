@@ -37,7 +37,7 @@ public class Event implements Serializable {
 	private Date dateevent;
 	@JsonIgnore
 	@ManyToMany
-	private Set<User> user;
+	private Set<User> users;
 	
 
 }

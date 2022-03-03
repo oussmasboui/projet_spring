@@ -12,17 +12,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Event;
+import tn.esprit.spring.repository.EventRepository;
 import tn.esprit.spring.service.EventService;
 @RestController
 
 public class EventController {
 	@Autowired
 	EventService eventservice;
+	
+	@Autowired
+	EventRepository er;
 	//creating a get mapping that retrieves all the user detail from the database   
 		@GetMapping("/Events")
 		private List<Event>getAllEvent()
 		{
 			List<Event> Events= eventservice.getAllEvent();
+			return Events;
+		}
+		@GetMapping("/orderByDate")
+		private List<Event> orderByDate()
+		{
+			List<Event> Events= er.orderByDate();
+			return Events;
+		}
+		
+		@GetMapping("/filterEventsByPlace/{place}")
+		private List<Event> filterEventsByPlace(@PathVariable("place") String place)
+		{
+			List<Event> Events= er.searchByPlace(place);
 			return Events;
 		}
 		//creating a get mapping that retrieves the detail of a specific event 
@@ -44,6 +61,12 @@ public class EventController {
 		{  
 		eventservice.addEvent(event);  
 		return event;
+		}
+		
+		@PostMapping("/addUserToEvent/{idevent}/{iduser}")  
+		private void addUserToEvent(@PathVariable("idevent") Long idevent, @PathVariable("iduser") Long iduser)   
+		{  
+		  eventservice.addUsersToEvent(idevent, iduser);
 		}
 		//creating put mapping that updates the book detail   
 		@PutMapping("/updateEvent")  

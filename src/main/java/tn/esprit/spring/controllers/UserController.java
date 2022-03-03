@@ -46,7 +46,13 @@ public class UserController {
 	{  
 	userservice.addUser(user);  
 	return user;
-	}  
+	} 
+	@PostMapping("/blockUser/{id}")  
+	private void blockUser(@PathVariable("id") Long id)   
+	{  
+	userservice.blockUser(id); 
+	
+	} 
 	//creating put mapping that updates the book detail   
 	@PutMapping("/updateUser")  
 	private User update(@RequestBody User user)   
@@ -73,6 +79,8 @@ public class UserController {
         return userservice.orderByName();
     }
 	
-	
-
+	@GetMapping("/authenticate/{email}/{password}")
+    public User authenticate(@PathVariable("email") String email,@PathVariable("password") String password){
+		return userservice.authenticate(email, password);
+}
 }
