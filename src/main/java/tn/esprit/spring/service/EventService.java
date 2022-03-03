@@ -14,5 +14,5 @@ public interface EventService {
 	void deleteEvent(Long id);
 	Event updateEvent(Event e);
 	Event retrieveEvent(Long id);
-
+	void addUsersToEvent(Long idEvent,Long idUser);
 }

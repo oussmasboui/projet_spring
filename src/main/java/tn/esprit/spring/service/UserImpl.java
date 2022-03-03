@@ -27,8 +27,17 @@ public class UserImpl implements UserService {
 
 	@Override
 	public User addUser(User u) {
-		// u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
+		   String email= u.getEmail();
+		   Optional<User> user= ur.findUserByEmail(email);
+		   if (user.isPresent())
+		   {
+			   System.out.println("user already exists");
+		   }
+		   else
+		   {  
+			u.setBlocked(false);
 	        ur.save(u);
+		   }
 	        return u;
 	}
 
@@ -62,11 +71,33 @@ public class UserImpl implements UserService {
 		return ur.orderByName();
 	}
 	@Override
-	public Boolean authenticate(String email, String password) {
-        User u=
-		return null;
+	public User authenticate(String email, String password) {
+	      Optional<User> u= ur.findUserByEmail(email);
+	         if (u.isPresent())
+	         {
+	             User user= u.get();
+	        	 if (password.equals(user.getPassword()))
+	        	 {
+	                 System.out.println("Welcome "+user.getName());
+
+	        		 return user;
+	        	 }
+	         }
+	         
+             System.out.println("Ooops ! Try again..");
+
+	    return null;
+	}
+	@Override
+	public void blockUser(Long iduser) {
+
+		User u= ur.findById(iduser).get();
+		u.setBlocked(true);
+		ur.save(u);
 	}
 	
+	
+
 	
 	
 

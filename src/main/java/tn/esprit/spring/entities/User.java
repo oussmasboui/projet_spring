@@ -29,7 +29,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity
+@Entity(name="user")
 
 @Table(name="user")
 public class User implements Serializable{
@@ -52,7 +52,7 @@ public class User implements Serializable{
 	private Date dateNaiss;
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
+	private Boolean blocked;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
@@ -87,7 +87,7 @@ public class User implements Serializable{
 	private Metrique metrique;
 	
 	@JsonIgnore
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="user")
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="users")
 	private Set<Event> event;
 
 }

@@ -20,7 +20,8 @@ User retrieveUser(Long id);
 Optional<User> FindUserByEmail(String email);
 List<User> filterByDomain(String domain);
 public List<User> orderByName();
-public Boolean authenticate(String email, String password);
+public User authenticate(String email, String password);
 
+public void blockUser(Long iduser);
 
 }
