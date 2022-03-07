@@ -1,8 +1,11 @@
 package tn.esprit.spring.controllers;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Opportunity;
 import tn.esprit.spring.entities.Travel;
 import tn.esprit.spring.service.ITravelService;
 
@@ -51,6 +55,11 @@ public class TravelRestController {
 	
      }
 	
+	@PostMapping("/AffectTravelToTraveler/{travel-id}/{user-id}")
+	@ResponseBody
+	public void AffectTravelToTraveler(@PathVariable("travel-id") Long idTravel , @PathVariable("user-id") Long idUser) {
+		travelservice.affecterTraveltoTraveler(idTravel, idUser);
+	}
 	
 	
 	
@@ -75,6 +84,20 @@ public class TravelRestController {
 		@ResponseBody
 		public Travel ModifyTravelById(@PathVariable("travel-id") Long idTravel,@RequestBody Travel t) {
 		return travelservice.updateTravelById(t, idTravel);
+		}
+		
+		
+		@GetMapping("/getClientWithdate/{startDate}/{endDate}/{day}")
+		@ResponseBody
+		public List<Travel>getTravelWithdate(@PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,@PathVariable(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,@PathVariable(name = "day") String day) {
+		List<Travel> listTravels = travelservice.getTravelsWithDate(startDate, endDate, day);
+		return listTravels;
+		}
+		
+		@GetMapping("/statisticnbTravelUser") 
+		@ResponseBody 
+		public List<Map<Long, Integer>> statisticnbTravelUser(){
+			return travelservice.StatisticUserTravel();
 		}
 		
 }

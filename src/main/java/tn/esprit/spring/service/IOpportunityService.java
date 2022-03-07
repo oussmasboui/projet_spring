@@ -4,6 +4,8 @@ import java.util.List;
 
 import tn.esprit.spring.entities.Opportunity;
 import tn.esprit.spring.entities.Travel;
+import tn.esprit.spring.entities.TypeOpportunity;
+import tn.esprit.spring.entities.User;
 
 
 
@@ -19,4 +21,5 @@ public interface IOpportunityService {
 	Opportunity retrieveOpportunityById(Long idOpportunity);
 	
 	Opportunity updateOpportunityById(Opportunity o,Long idOpportunity);
-}
+	void ajouterEtaffecterOpportunitytoUser (Opportunity op, Long idUser);
+	}

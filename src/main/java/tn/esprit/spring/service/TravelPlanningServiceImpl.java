@@ -37,6 +37,10 @@ public class TravelPlanningServiceImpl implements ITravelPlanningService{
 		
 		return planningRepo.save(tp);
 	}
+	@Override
+	public List<TravelPlanning> FindPlanningByTravelDestination(String destination) {
+	return planningRepo.GetPlanningByTravelDestination(destination);
+	}
 	
 	
 	

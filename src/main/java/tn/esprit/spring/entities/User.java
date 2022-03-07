@@ -64,11 +64,11 @@ public class User implements Serializable{
 	private Set<Message> messages ;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="")
 	private Set<Opportunity> opportunity;
 	
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Travel> travels;
 	
 	@JsonIgnore

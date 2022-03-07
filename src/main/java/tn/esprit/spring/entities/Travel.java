@@ -16,10 +16,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,10 +48,10 @@ public class Travel implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Objet objet;
 	
-	
-	@ManyToOne
-	private User user;
-	
+	@JsonIgnore
+	@ManyToMany(mappedBy="travels", cascade = CascadeType.ALL)
+	private Set<User> users;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="travel")
 	private Set<TravelPlanning> travelplannings ;
 }

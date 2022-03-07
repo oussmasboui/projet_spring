@@ -72,9 +72,16 @@ public class OpportunityRestController {
 		
 		
 		//http://localhost:8089/SpringMVC/opportunity/modify-oppotunity-byID/2
-				@PutMapping("/modify-oppotunity-byID/{opportunity-id}")
-				@ResponseBody
-				public Opportunity ModifyOpportunityById(@PathVariable("opportunity-id") Long idOpportunity,@RequestBody Opportunity o) {
-				return opportunityservice.updateOpportunityById(o, idOpportunity);
-				}
+		@PutMapping("/modify-oppotunity-byID/{opportunity-id}")
+		@ResponseBody
+		public Opportunity ModifyOpportunityById(@PathVariable("opportunity-id") Long idOpportunity,@RequestBody Opportunity o) {
+		return opportunityservice.updateOpportunityById(o, idOpportunity);
+		}
+				
+				
+		@PostMapping("/assignopportunUser/{user-id}")
+		@ResponseBody
+		public void assignopportunitytoUser(@RequestBody Opportunity op , @PathVariable("user-id") Long idUser) {
+			opportunityservice.ajouterEtaffecterOpportunitytoUser(op, idUser);
+		}
 }

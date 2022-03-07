@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Opportunity;
 import tn.esprit.spring.entities.Travel;
+import tn.esprit.spring.entities.TypeOpportunity;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.OpportunityRepository;
 import tn.esprit.spring.repository.TravelRepository;
+import tn.esprit.spring.repository.UserRepository;
 @Service
 public class OpportunityServiceImpl implements IOpportunityService {
 
 	@Autowired 
 	OpportunityRepository opportunityRepo;
+	@Autowired 
+	UserRepository userRepo;
 	@Override
 	public List<Opportunity> retrieveAllOpportunities() {
 		
@@ -50,13 +55,26 @@ public class OpportunityServiceImpl implements IOpportunityService {
 		Opportunity opp= opportunityRepo.findById(idOpportunity).orElse(null);
 		opp.setDescription(o.getDescription());
 		opp.setDate(o.getDate());
-		opp.setType(o.getType());
+		opp.setTypeo(o.getTypeo());
 		opp.setUser(o.getUser());
 	opportunityRepo.saveAndFlush(opp);
 	return opp;
 	}
 
+	@Override
+	public void ajouterEtaffecterOpportunitytoUser(Opportunity op, Long idUser) {
+		//opportunityRepo.save(op);
+		User user= userRepo.findById(idUser).orElse(null);
+		if (user.getRole().toString().equals("Traveler")) 
+		{
+		op.setUser(user);
+		opportunityRepo.save(op); 
+		}
+		else {
+			System.out.print("not allowed ? ");
+		}
+		
+	}
 
 	
-
 }
