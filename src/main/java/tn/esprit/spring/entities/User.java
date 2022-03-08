@@ -67,11 +67,11 @@ public class User implements Serializable{
 	private Set<Message> messages ;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="")
 	private Set<Opportunity> opportunity;
 	
 	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Travel> travels;
 	
 	@JsonIgnore
@@ -89,5 +89,9 @@ public class User implements Serializable{
 	@JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="users")
 	private Set<Event> event;
+	
+	@JsonIgnore
+	@ManyToMany
+	private Set<User> Friends ; // mteb3a matshing asma
 
 }

@@ -62,6 +62,13 @@ public class TravelPlanningRestController {
 			{
 				return planningService.updateTravelPlanning(tp);
 			}
+			
+			@GetMapping("/GetplanningByTravelDestination/{destination}") 
+			@ResponseBody 
+			public List<TravelPlanning> GetplanningByTravelDestination(@PathVariable("destination") String destination) { 
+				return planningService.FindPlanningByTravelDestination(destination);
+			} 
+			
 
 		
 			

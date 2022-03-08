@@ -12,5 +12,7 @@ public interface ITravelPlanningService {
 	 void deleteTravelPlanning(Long idPlanning);
 	 void deleteAllTravelPlanning();
 	 TravelPlanning updateTravelPlanning(TravelPlanning tp);
+	 public List<TravelPlanning> FindPlanningByTravelDestination(String destination);
+	 
 	
 }
