@@ -100,4 +100,10 @@ public class TravelRestController {
 			return travelservice.StatisticUserTravel();
 		}
 		
+		
+		@GetMapping("/getmatched") 
+		@ResponseBody 
+		public String Matching(){
+			return travelservice.Matching();
+		}
 }

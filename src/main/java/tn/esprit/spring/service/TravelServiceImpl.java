@@ -134,7 +134,47 @@ public class TravelServiceImpl implements ITravelService {
 
 
 
+	@Override
+	public String Matching() {
+		// TODO Auto-generated method stub
+	List<Travel> travels=	travelRepo.getUsersByDate();
+	
+	for (Travel t:travels) {
+		String DES1=t.getDestination();
+		for (Travel i:travels) {
+			String DES2=i.getDestination();
+			if(DES1.equals(DES2)) {
+			Set<User>	users = t.getUsers();
+			Set<User>	users2 =i.getUsers();
+			for(User u:users) {
+				String d=u.getDomain();
+				for(User u2:users2) {
+					String d2=u2.getDomain();
+					Long id1=u.getIdUser();
+					Long id2=u2.getIdUser();
+					if(id1!=id2) {
+						if(d.equals(d2)) {
+							if(	u.getFriends().contains(u2)) {}
+						u.getFriends().add(u2);
+						userRepo.save(u);
+						u2.getFriends().add(u);	
+						userRepo.save(u2);
+											}
+									}
+					}
+				
+				
+			}
+			}
+			
+		}
+		
 
+	}
+	
+	
+		return "Matching complete";
+	}
 
 
 

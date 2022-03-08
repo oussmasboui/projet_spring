@@ -29,4 +29,6 @@ public interface ITravelService {
 
 	public List<TravelPlanning> p(String destination);
 
+	public String Matching();
+
 }

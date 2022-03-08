@@ -86,5 +86,9 @@ public class User implements Serializable{
 	@JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Event> event;
+	
+	@JsonIgnore
+	@ManyToMany
+	private Set<User> Friends ; // mteb3a matshing asma
 
 }
