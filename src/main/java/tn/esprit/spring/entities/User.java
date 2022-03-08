@@ -29,9 +29,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity(name="user")
-
-@Table(name="user")
+@Entity
 public class User implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -92,6 +90,6 @@ public class User implements Serializable{
 	
 	@JsonIgnore
 	@ManyToMany
-	private Set<User> Friends ; // mteb3a matshing asma
+	private Set<User> Friends ; 
 
 }
