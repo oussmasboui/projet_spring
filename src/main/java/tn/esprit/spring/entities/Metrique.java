@@ -3,11 +3,7 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,19 +18,17 @@ import lombok.ToString;
 @RequiredArgsConstructor
 
 @Entity
-public class Metrique implements Serializable {
+public class Metrique{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private long idMetrique;
-	private String productivity;
-	private String workingHours;
-	private String communication;
-	private String commitment;
-	
-	@OneToOne
-
-
+	private Long idMetrique;
+	private String misson;
+	private int workingHours;
+	@Enumerated(EnumType.STRING)
+	private Difficuilte difficuilte;
+	@Enumerated(EnumType.STRING)
+	private Etat etat;
 	@JsonIgnore
-
+	@ManyToOne
 	private User user;
 }

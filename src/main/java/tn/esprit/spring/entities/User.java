@@ -1,6 +1,5 @@
 package tn.esprit.spring.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -16,21 +15,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class User implements Serializable{
+public class User {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	
-	private long idUser;
+	private Long idUser;
 	private int phoneNbr;
 	private String email;
 	private String password;
@@ -48,30 +45,30 @@ public class User implements Serializable{
 	private Role role;
 	
 	
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Post> posts ;
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Claim> claims ;
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Message> messages ;
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Opportunity> opportunity;
-	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Travel> travels;
-	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Invitation> invitations;
-	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Recompence>recompence ;
-	
-	
-	@OneToOne(mappedBy="user")
-	private Metrique metrique;
+
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private Set<Metrique> metriques;
 
 }
