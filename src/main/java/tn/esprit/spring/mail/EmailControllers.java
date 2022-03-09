@@ -15,7 +15,7 @@ public class EmailControllers {
 	  @GetMapping("/test")
 		public String send(){
 			SimpleMailMessage message = new SimpleMailMessage();
-			message.setFrom("asma.abessi@esprit.tn");
+			message.setFrom("ons.chebbi@esprit.tn");
 			message.setTo("aicha.nouisser@esprit.tn");
 			message.setSubject("travel Planning message");
 			message.setText("Has been approved !");

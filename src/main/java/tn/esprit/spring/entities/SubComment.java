@@ -1,17 +1,13 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,24 +24,19 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class Comment implements Serializable {
+public class SubComment implements Serializable {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private long idComment;
+	private long idSubComment;
 	private String text;
 	@Temporal(TemporalType.DATE)
 	private Date dateComment;
-	
-
+	@Temporal(TemporalType.DATE)
+	private Date date;
 	@JsonIgnore
 	@ManyToOne
-    private Post post;
-	
-	@JsonManagedReference
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="comment")
-	private Set<SubComment> subComments ;
+    private Comment comment;
 	
 	@JsonIgnore
 	@ManyToOne

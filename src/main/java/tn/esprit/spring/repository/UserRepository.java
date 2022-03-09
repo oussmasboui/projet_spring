@@ -1,20 +1,26 @@
 package tn.esprit.spring.repository;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+
 import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entities.User;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+
+
 
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 	@Transactional
 	@Query(value="select * from user where email=?1 ", nativeQuery = true)
 	public Optional<User>findUserByEmail(String email);

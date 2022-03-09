@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import java.lang.StringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @Entity
 public class User implements Serializable{
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	
@@ -52,46 +54,81 @@ public class User implements Serializable{
 	private Date dateNaiss;
 	@Enumerated(EnumType.STRING)
 	private Role role;
+
 	private Boolean blocked;
-	
+	private int scoreEvents;
+
+	@JsonManagedReference
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Post> posts ;
 	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Comment> comments ;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<SubComment> subComments ;
+	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Claim> claims ;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Message> messages ;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="")
 	private Set<Opportunity> opportunity;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Travel> travels;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL)
 	private Set<Invitation> invitations;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Recompence>recompence ;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToOne(mappedBy="user")
 	private Metrique metrique;
 	
-	@JsonIgnore
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="users")
-	private Set<Event> event;
+
 	
 	@JsonIgnore
 	@ManyToMany
 	private Set<User> Friends ; 
+
+	@JsonManagedReference
+	@JsonIgnore
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="users")
+	private Set<Event> event;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Likess> likes1 ;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Dislikess> dislikes1;
+
 
 }

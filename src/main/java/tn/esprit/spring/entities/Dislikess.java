@@ -1,20 +1,25 @@
 package tn.esprit.spring.entities;
 
+
 import java.io.Serializable;
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.springframework.web.bind.annotation.RestController;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,23 +29,19 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 @Entity
+public class Dislikess implements Serializable{
 
-public class Event implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long  idevent;
-	private String eventtype;
-	private int numInv;
-	private int minInv;
-	private String entrepriseName;
-	private String partenaire;
-	private String lieu;
-	private Date datedebut;
-	private Date datefin;
-	private String subject;
-	private String summary;
-	@ManyToMany
+	private long idDislike;
+	@Temporal(TemporalType.DATE)
+	private Date date;
 	@JsonIgnore
-	private Set<User> users;
+	@ManyToOne
+    private User user;
+	
+	@JsonIgnore
+	@ManyToOne
+    private Post post;
 	
 }
