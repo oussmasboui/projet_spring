@@ -51,7 +51,7 @@ public class User implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	private Boolean blocked;
-	
+	private int scoreEvents;
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Post> posts ;
@@ -84,7 +84,6 @@ public class User implements Serializable{
 	@OneToOne(mappedBy="user")
 	private Metrique metrique;
 	
-	@JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="users")
 	private Set<Event> event;
 	

@@ -16,6 +16,8 @@ public class UserImpl implements UserService {
 	
 	private final UserRepository ur;
 
+	//BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+	
     @Autowired
 	public UserImpl(UserRepository ur) {
 		this.ur=ur;
@@ -35,6 +37,7 @@ public class UserImpl implements UserService {
 		   }
 		   else
 		   {  
+		//	u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
 			u.setBlocked(false);
 	        ur.save(u);
 		   }
@@ -76,18 +79,16 @@ public class UserImpl implements UserService {
 	         if (u.isPresent())
 	         {
 	             User user= u.get();
-	        	 if (password.equals(user.getPassword()))
-	        	 {
-	                 System.out.println("Welcome "+user.getName());
-
-	        		 return user;
-	        	 }
+	             if (password.equals(user.getPassword())){
+	                 return user;
+	             }
 	         }
 	         
              System.out.println("Ooops ! Try again..");
 
 	    return null;
 	}
+	
 	@Override
 	public void blockUser(Long iduser) {
 
