@@ -115,7 +115,7 @@ public class User implements Serializable{
 
 	@JsonManagedReference
 	@JsonIgnore
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="user")
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="users")
 	private Set<Event> event;
 	
 	@JsonManagedReference
