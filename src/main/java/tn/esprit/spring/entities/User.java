@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @Entity
 public class User implements Serializable{
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	
@@ -51,40 +53,69 @@ public class User implements Serializable{
 	private Role role;
 	
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Post> posts ;
 	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Comment> comments ;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<SubComment> subComments ;
+	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Claim> claims ;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Message> messages ;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Opportunity> opportunity;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Travel> travels;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Invitation> invitations;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Recompence>recompence ;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@OneToOne(mappedBy="user")
 	private Metrique metrique;
 	
+	@JsonManagedReference
 	@JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private Set<Event> event;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Likess> likes1 ;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<Dislikess> dislikes1;
 
 }

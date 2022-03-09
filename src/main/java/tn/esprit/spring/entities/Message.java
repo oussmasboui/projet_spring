@@ -26,7 +26,7 @@ public class Message implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 
 	private long idMessage;
-	private String text;
+	private String message;
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
