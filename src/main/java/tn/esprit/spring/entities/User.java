@@ -22,12 +22,14 @@ import java.lang.StringBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 @Entity
 public class User implements Serializable{
