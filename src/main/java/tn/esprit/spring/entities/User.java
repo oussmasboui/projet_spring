@@ -1,5 +1,6 @@
 package tn.esprit.spring.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,11 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
@@ -24,7 +27,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+@FieldDefaults(level = AccessLevel.PUBLIC)
+@Table(name = "User")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long idUser;
@@ -42,8 +48,7 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date dateNaiss;
 	@Enumerated(EnumType.STRING)
-	private Role role;
-	
+	private BadageQuizz bq;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
@@ -70,5 +75,18 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private Set<Metrique> metriques;
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	private BadageQuizz badageQuizz;
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	private Poupilarite poupilarite;
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	private ReactiviteBadge reactiviteBadge;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	Set<Response> responses;
 
 }
