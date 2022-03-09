@@ -36,7 +36,7 @@ public class MessageService implements IMessageService{
 	public Message updateMessage(Message m, Long id) {
 		
 		Message message = messageRepository.getById(id);
-		message.setText(m.getText());
+		message.setMessage(m.getMessage());
 		
 		return messageRepository.save(message);
 	}

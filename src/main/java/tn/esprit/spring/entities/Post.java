@@ -14,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,6 +28,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @Entity
 public class Post implements Serializable {
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long idPost;
@@ -44,9 +49,22 @@ public class Post implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="post")
 	private Set<Comment> comments ;
 	
+	@JsonIgnore
 	 @ManyToOne
 	    private User user;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="post")
+	private Set<Likess> likes1 ;
+	
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="post")
+	private Set<Dislikess> dislikes1 ;
 }

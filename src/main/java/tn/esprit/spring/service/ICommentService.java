@@ -9,11 +9,11 @@ public interface ICommentService {
 
 public List<Comment> retrieveAllComment();
 	
-	public Comment addComment(Comment c, Long idPost);
+	public Comment addComment(Comment c, Long idPost, Long idUser);
 	
-	public void deleteComment(Long idComment);
+	public void deleteComment(Long idComment , Long idUser);
 	
-	public Comment updateComment(Comment c, Long id);
+	public Comment updateComment(Comment c, Long id, Long idUser);
 	
 	public Optional<Comment> retrieveCommentById(Long idComment);
 }

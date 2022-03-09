@@ -1,5 +1,6 @@
 package tn.esprit.spring.entities;
 
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -28,27 +29,19 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class Comment implements Serializable {
+public class Dislikess implements Serializable{
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private long idComment;
-	private String text;
+	private long idDislike;
 	@Temporal(TemporalType.DATE)
-	private Date dateComment;
+	private Date date;
+	@JsonIgnore
+	@ManyToOne
+    private User user;
 	
-
 	@JsonIgnore
 	@ManyToOne
     private Post post;
 	
-	@JsonManagedReference
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="comment")
-	private Set<SubComment> subComments ;
-	
-	@JsonIgnore
-	@ManyToOne
-    private User user;
-
 }
