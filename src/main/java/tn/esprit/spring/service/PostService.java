@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Dislikess;
@@ -46,7 +47,6 @@ public class PostService implements IPostService {
 	}
 
 	@Override
-		
 	public Post addPost(Post p, Long idUser) {
 		User user = userRepository.getById(idUser);
 		p.setUser(user);
@@ -133,6 +133,8 @@ public class PostService implements IPostService {
 		
 	}
 
+	//dislike
+	
 	@Override
 	public void dislikePost(Long idPost, long idUser) {
 		User user = userRepository.getById(idUser);
@@ -210,6 +212,7 @@ public class PostService implements IPostService {
 		return dislikessRepository.countTotalDislikesByMonth(dateStart, dateEnd);
 	}
 	
+	@Scheduled(cron = "0 0 0 1 * *")
 	public List<Object> employeeOfTheMonth(){
 		List<Object[]> postMonth = limitFiveWithScore(postMonth(), 10);
 		List<Object[]> commentMonth = limitFiveWithScore(commentService.commentMonth(),8);
