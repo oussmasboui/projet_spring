@@ -30,14 +30,17 @@ public class Event implements Serializable {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long  idevent;
 	private String eventtype;
-	private int numinvité;
+	private int numInv;
+	private int minInv;
 	private String entrepriseName;
 	private String partenaire;
 	private String lieu;
-	private Date dateevent;
-	@JsonIgnore
+	private Date datedebut;
+	private Date datefin;
+	private String subject;
+	private String summary;
 	@ManyToMany
+	@JsonIgnore
 	private Set<User> users;
 	
-
 }

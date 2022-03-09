@@ -11,14 +11,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.calendar.CalendarService;
 import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.repository.EventRepository;
 import tn.esprit.spring.service.EventService;
+
+
 @RestController
 
 public class EventController {
 	@Autowired
 	EventService eventservice;
+	
+	@Autowired
+	CalendarService cs;
 	
 	@Autowired
 	EventRepository er;
@@ -55,19 +61,40 @@ public class EventController {
 		{
 			eventservice.deleteEvent(idevent);
 		}
+		
+		
 		//creating post mapping that post the book detail in the database  
 		@PostMapping("/saveEvent")  
 		private Event saveEvent(@RequestBody Event event)   
 		{  
-		eventservice.addEvent(event);  
+		eventservice.addEvent(event); 
+		Long id= event.getIdevent();
+		eventservice.addToCalendar(id);
 		return event;
 		}
+		
+		
+		@PostMapping("/addToCalendar/{id}")  
+		private void addToCalendar(@PathVariable("id") Long id)   
+		{  
+		
+		eventservice.addToCalendar(id);
+		}
+		
+		
+		
 		
 		@PostMapping("/addUserToEvent/{idevent}/{iduser}")  
 		private void addUserToEvent(@PathVariable("idevent") Long idevent, @PathVariable("iduser") Long iduser)   
 		{  
 		  eventservice.addUsersToEvent(idevent, iduser);
 		}
+		/*
+		@PostMapping("/mail/{idevent}")  
+		private void mail(@PathVariable("idevent") Long idevent)   
+		{  
+		  eventservice.sendCancellingEmail(idevent);
+		}*/
 		//creating put mapping that updates the book detail   
 		@PutMapping("/updateEvent")  
 		private Event update(@RequestBody Event event)   
