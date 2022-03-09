@@ -132,6 +132,8 @@ public class PostService implements IPostService {
 		
 	}
 
+	//dislike
+	
 	@Override
 	public void dislikePost(Long idPost, long idUser) {
 		User user = userRepository.getById(idUser);
