@@ -29,13 +29,14 @@ EventService es;
 @Autowired
 JavaMailSender mailSender;
 
-  //  @Transactional
-	//@Scheduled(cron="*/15 * * * * *")
-    /*   
+ @Transactional
+ @Scheduled(cron="*/60 * * * * *")
+     
 	  public void cancelEvent()
 	   { Date today= new Date();
 	    java.sql.Date sqlDate = new java.sql.Date(today.getTime()+ (1000 * 60 * 60 * 24));
 	    Event event= er.getEventToCancel(sqlDate);
 	    es.sendCancellingEmail(event);
-	   }*/
+	    es.deleteEvent(event.getIdevent());
+	   }
 }
