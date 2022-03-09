@@ -88,18 +88,18 @@ public class TravelServiceImpl implements ITravelService {
 		//System.out.println(tp);
 		String mailt = user.getEmail();
 		 Travel t = travelRepo.getById(idTravel);
-		//if (user.getRole().toString().equals("Traveler")) 
-	//	{
+		if (user.getRole().toString().equals("Traveler")) 
+		{
 	user.getTravels().add(t);
 		userRepo.save(user); 
 	    mailController.ApplicationMail(mailt,t.getDestination(),user.getName());
 		
-		//}
-	//	else {
+		}
+		else {
 			
-		//	System.out.print("travel belong onely to Traveler");
+	System.out.print("travel belong onely to Traveler");
 		
-		//}
+		}
 		
 		
 		
