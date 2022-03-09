@@ -39,7 +39,7 @@ import tn.esprit.spring.entities.*;
 @Service
 public class CalendarService {
 	
-	 private final static Log logger = LogFactory.getLog(CalendarController.class);
+	 private final static Log logger = LogFactory.getLog(CalendarService.class);
 	 	private static final String APPLICATION_NAME = "EventsCalendar";
 	 	private static HttpTransport httpTransport;
 	 	private static final JsonFactory JSON_FACTORY = new JacksonFactory();
