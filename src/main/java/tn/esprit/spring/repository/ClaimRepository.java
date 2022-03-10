@@ -27,5 +27,35 @@ public interface ClaimRepository extends PagingAndSortingRepository<Claim, Long>
 	
 	@Query(value="SELECT * FROM CLAIM WHERE ETAT=?1", nativeQuery = true )
 	public List<Claim> filterClaims(Boolean etat);
+	
+	
+	
+	
+	
+	
+	
+	/////////////
+	
+	
+	
+	/*
+	
+	 @Query(value ="select * from Claim m where m.etat like '%1%'  ", nativeQuery = true)
+	    List<Claim> findMealByStatus1();
+	  @Query(value ="select * from Claim m where m.etat like '%2%'  ", nativeQuery = true)
+	    List<Claim> findMealByStatus2();
+	  @Query(value ="select * from Claim m where m.etat like '%0%'  ", nativeQuery = true)
+	    List<Claim> findMealByStatus0();*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

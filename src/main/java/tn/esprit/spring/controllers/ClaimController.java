@@ -1,7 +1,9 @@
 package tn.esprit.spring.controllers;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +25,7 @@ import tn.esprit.spring.entities.Claim;
 import tn.esprit.spring.repository.ClaimRepository;
 import tn.esprit.spring.service.ClaimService;
 
-
+import org.springframework.ui.Model;
 
 @RestController
 @RequestMapping("/Claim")
@@ -51,6 +53,13 @@ public class ClaimController {
 	{
 		List<Claim> listClaim = cr.filterClaims(state);	
 		return listClaim; 	
+	}
+	
+	@GetMapping("/stat/etat")
+	@ResponseBody
+	public String statEtat()
+	{
+		return cs.getEtat();
 	}
 	
 	@GetMapping("/trierParDate")
@@ -127,6 +136,45 @@ public class ClaimController {
 	
 	
 	
+	}
 	
 	
-}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

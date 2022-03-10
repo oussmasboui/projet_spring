@@ -12,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,6 +38,10 @@ public class Invitation implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long idInvitation;
 	private boolean state;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateinvitation;
+	private String location;
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,mappedBy="invitations")
 	private Set<User> users;
