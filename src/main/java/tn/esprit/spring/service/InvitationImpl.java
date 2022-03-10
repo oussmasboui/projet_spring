@@ -37,6 +37,24 @@ public class InvitationImpl implements InvitationService  {
 		// TODO Auto-generated method stub
 		return (List<Invitation>) repository.findAll();
 	}
+	
+	@Override
+	public void addListInvitation(List<Invitation> c) {
+		//Date date = new Date();
+		//String strDateFormat = "hh:mm:ss a";
+	    //DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+	    //String formattedDate= dateFormat.format(date);
+		
+		
+		for (Invitation inv : c) {
+			
+			inv.setState(false);
+			
+			repository.save(inv);
+			
+		}
+		
+	}
 
 	@Override
 	public void deleteInvitation(Long id) {
@@ -116,6 +134,30 @@ public class InvitationImpl implements InvitationService  {
 		
 		
 	}
+	
+	@Override
+	public String getEtat() {
+	    List<Invitation> listinvitations =  (List<Invitation>) repository.findAll();
+	    int t = 0;
+	    int f = 0;
+	    for(Invitation cl : listinvitations)
+	    {
+	    	if(cl.isState()==true)
+	    	{
+	    		
+	    		
+	    		t=t+1;
+	    	}
+	    	else{
+	    		f=f+1;
+	    	}
+	    	System.err.print(t);
+	    	System.out.print(t);
+	    }
+	    
+	    return "Nbre Invitation accepté :"+t+"\n Nbre Invitation Réfusé :"+f;
+		
+	}
 
 	@Override
 	public void addUserToInvitation(Long idUser, Long idInv) {
@@ -139,10 +181,44 @@ public class InvitationImpl implements InvitationService  {
 		inv.setState(true);
 		repository.save(inv);
 	}
+	
+	public String EtatInvi(long id)
+	{
+		Invitation invi = repository.findById(id).get();
+		
+		if(invi.isState()==true)
+		{
+			return "L'Invitation est : Accépté";
+
+		}
+		else {
+			return "L'Invitation est : Réfusé";
+
+		}
+	}
+
+	@Override
+	public List<Float> getAllByMonth() {
+		List<Float> listF = new ArrayList<Float>();
+		for(int i=1;i<11;i++)
+		{
+			
+			
+			
+			
+		//	System.err.println(k);
+			listF.add(repository.getByMonth(i));
+			
+			
+		}
+		
+		//System.err.println(listF.toString());
+		return listF;
+	}
 
 
 	
-	
+	// stat invitation 
 	
 	
 	

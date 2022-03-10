@@ -130,5 +130,15 @@ public class User implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Dislikess> dislikes1;
 
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	private BadageQuizz badageQuizz;
+	@JsonIgnore
+	@Enumerated(EnumType.STRING)
+	private ReactiviteBadge reactiviteBadge;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	Set<Response> responses;
 
 }

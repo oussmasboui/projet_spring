@@ -15,4 +15,9 @@ List<Invitation>findBystate(boolean state) ;
 
 @Query(value="SELECT * FROM invitation where invitation.state=? 1", nativeQuery = true)
 public List<Invitation> getBystate(Boolean state);
+
+
+@Query("select count(id_invitation) from Invitation i where month(i.dateinvitation) = ?1")
+public Float getByMonth(int month);
+
 }

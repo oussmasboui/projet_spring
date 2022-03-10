@@ -31,9 +31,6 @@ public class Recompence implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long idRecompence;
-	
-	
-	private int nbrRecompence;
 	@Enumerated(EnumType.STRING)
 	private TypeRecompence typeRecompence;
 	
