@@ -2,7 +2,9 @@ package tn.esprit.spring.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,14 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Difficuilte;
 import tn.esprit.spring.entities.Metrique;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.service.MetriqueService;
 
 
 
 @RestController
 @CrossOrigin(origins = "*")
+@Api(tags = "Metrique")
 @RequestMapping("/Metrique")
+
 public class MetriqueController {
 	@Autowired
 	MetriqueService MetriqueService ;
@@ -42,10 +48,10 @@ public class MetriqueController {
 		return MetriqueService.retrieveMetrique(idMetrique);
 	}
 
-	@PostMapping("/add-Metrique")
+	@PostMapping("/{id}/add-Metrique/")
 	@ResponseBody
-	public Metrique addProduct(@RequestBody Metrique m) {
-		return MetriqueService.addMetrique(m);
+	public Metrique addProduct(@RequestBody Metrique m,@PathVariable("id") Long id) {
+		return MetriqueService.addMetrique(m,id);
 	}
 	@DeleteMapping("/remove-Metrique/{Metrique-id}")
 	@ResponseBody
@@ -57,6 +63,30 @@ public class MetriqueController {
 	@ResponseBody
 	public Metrique modifyMetrique(@RequestBody Metrique Metrique) {
 		return MetriqueService.updateMetrique(Metrique);
+	}
+	@GetMapping("/nbMission/{id}/{diff}")
+	@ResponseBody
+	public int nbreMissionFinit(@PathVariable("id") Long id, @PathVariable("diff") Difficuilte difficuilte) {
+		return MetriqueService.nbreMissionFinit(id,difficuilte);
+	}
+
+	@GetMapping("/nbHeure/{id}/")
+	@ResponseBody
+	public int nbreHeureTravail(@PathVariable("id")Long id) {
+		return  MetriqueService.nbreHeureTravail(id);
+	}
+
+	@GetMapping("/Rate/{id}/")
+	@ResponseBody
+	public float UserRate(@PathVariable("id") Long id) {
+		return  MetriqueService.UserRate(id);
+	}
+	@GetMapping("/order")
+	@ResponseBody
+
+	public List<User> orderUser() {
+
+		return MetriqueService.orderUser();
 	}
 	
 }
