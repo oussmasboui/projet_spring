@@ -23,5 +23,5 @@ public List<User> orderByName();
 public User authenticate(String email, String password);
 
 public void blockUser(Long iduser);
-
+public List<User> topUsers();
 }

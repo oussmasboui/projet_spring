@@ -96,6 +96,13 @@ public class UserImpl implements UserService {
 		u.setBlocked(true);
 		ur.save(u);
 	}
+	@Override
+	public List<User> topUsers() {
+		List<User> users= ur.orderByScoreEvent();
+		System.out.println(users.size());
+		return users;
+		
+	}
 	
 	
 
