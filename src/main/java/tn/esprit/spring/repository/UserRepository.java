@@ -26,6 +26,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	public Optional<User>findUserByEmail(String email);
 	
 	@Transactional
+	@Query(value="select * from user order by score_events DESC LIMIT 3", nativeQuery = true)
+	public List<User> orderByScoreEvent();
+	
+	@Transactional
 	@Query(value="select * from user  where domain=?1", nativeQuery = true)
 	public List<User> filterByDomain(String domain);
 	@Transactional

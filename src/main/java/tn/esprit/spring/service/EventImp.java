@@ -103,10 +103,9 @@ public class EventImp implements EventService {
 		    SimpleMailMessage message = new SimpleMailMessage();
 			message.setFrom("oussama.sboui@esprit.tn");
 			message.setTo(user.getEmail());
-		    message.setText("Mr/Mrs : "+user.getName()+ "\n The  : " +event.getEntrepriseName()+ " is so sad to inform you that"
+		    message.setText("Mr/Mrs : "+user.getName()+ "/n The  : " +event.getEntrepriseName()+ " is so sad to inform you that"
 					+ "the event " + event.getSubject() + "has been cancelled!"
-							+ "/n But don't worry! This will add 10 points to your score!"
-							+ "/n The score will help you get a discount next time buying a ticket for the events");
+							+ "/n But don't worry! This will add 5 points to your score!");
 			message.setSubject("Tomrrow's Event has been cancelled");
 			
 			mailSender.send(message);
@@ -114,8 +113,10 @@ public class EventImp implements EventService {
 		    int eventscore= user.getScoreEvents() ;
 		    System.out.println(eventscore);
 			user.setScoreEvents(eventscore+5);
+			
 			ur.save(user);
-		    
+		    er.delete(event);
+		    System.out.println("event deleted"+event);
 		    }
 		
 	}
