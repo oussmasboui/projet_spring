@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.entities.Invitation;
 import tn.esprit.spring.entities.User;
@@ -16,7 +17,7 @@ public class UserImpl implements UserService {
 	
 	private final UserRepository ur;
 
-	//BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+	BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 	
     @Autowired
 	public UserImpl(UserRepository ur) {
@@ -37,7 +38,7 @@ public class UserImpl implements UserService {
 		   }
 		   else
 		   {  
-		//	u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
+			u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
 			u.setBlocked(false);
 	        ur.save(u);
 		   }
@@ -79,7 +80,7 @@ public class UserImpl implements UserService {
 	         if (u.isPresent())
 	         {
 	             User user= u.get();
-	             if (password.equals(user.getPassword())){
+	             if (bCryptPasswordEncoder.matches(password,user.getPassword())){
 	                 return user;
 	             }
 	         }

@@ -45,12 +45,12 @@ JavaMailSender mailSender;
 	   }
  
  @Transactional
- @Scheduled(cron="*/15 * * * * *")
+ @Scheduled(cron="*/60 * * * * *")// every 60 seconds
 // @Scheduled(cron="0 0 1 1-12 *") //At 00:00 on day-of-month 1 in every month from January through December.
  public void TopScore()
  { 
 	 List<User> users= us.topUsers();
-	  System.out.println("Our top 3 users in this month are:");
+	  System.out.println("Our top users in this month are:");
       int i=1;
      for(User user:users)
      {
