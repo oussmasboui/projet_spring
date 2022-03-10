@@ -43,7 +43,7 @@ JavaMailSender mailSender;
 	    es.sendCancellingEmail(event);
 	    
 	   }
- 
+ //
  @Transactional
  @Scheduled(cron="*/60 * * * * *")// every 60 seconds
 // @Scheduled(cron="0 0 1 1-12 *") //At 00:00 on day-of-month 1 in every month from January through December.

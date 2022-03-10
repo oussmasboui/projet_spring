@@ -62,6 +62,7 @@ public class UserImpl implements UserService {
 		User u=ur.findById(id).get();
 		return u;
 	}
+	//
 	 @Override
 	    public Optional<User> FindUserByEmail(String email) {
 	        return ur.findUserByEmail(email);
