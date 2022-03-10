@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ch.qos.logback.core.status.Status;
 import tn.esprit.spring.entities.Claim;
 
 
@@ -25,5 +26,48 @@ public interface ClaimService {
 		void claimCheck(Long idClaim);
 		
 		Boolean badWords(Claim c);
+
+
+		List<Claim> retrieveAllClaimpdf();
+		
+		public String getEtat();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		///////////////////////////
+		
+		
+		
+		
+		
+	
+		/*List<Claim> getAllReclamationss();
+		List<Claim> getAllReclamationsss();
+
+
+		Status convertToEntityAttribute();
+		*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	 
 }

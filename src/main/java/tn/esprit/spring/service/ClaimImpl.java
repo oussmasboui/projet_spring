@@ -1,5 +1,4 @@
 package tn.esprit.spring.service;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+
+
+import ch.qos.logback.core.status.Status;
 import tn.esprit.spring.entities.Claim;
 import tn.esprit.spring.entities.Invitation;
 import tn.esprit.spring.entities.User;
@@ -22,14 +24,25 @@ public class  ClaimImpl implements ClaimService {
 	@Autowired
 	ClaimRepository repository;
 
+
 	@Autowired
 	UserRepository ur;
-
+	
+	
 
 	@Override
 	public List<Claim> retrieveAllClaim() {
 		// TODO Auto-generated method stub
+		
 		return (List<Claim>) repository.findAll();
+		
+	}
+	@Override
+	public List<Claim> retrieveAllClaimpdf() {
+		
+
+		return (List<Claim>) repository.findAll();
+		
 	}
 
 	@Override
@@ -115,13 +128,47 @@ return cl;
 	//public Page<Claim> findBysubject(String subject, Pageable pageable) {
 		// TODO Auto-generated method stub
 	//	return repository.findBysubject(subject,pageable);
-	}
+	
+ 
+public List<Claim> listAll() {
+    return (List<Claim>) repository.findAll();
+}
+@Override
+public String getEtat() {
+    List<Claim> lisclaim =  (List<Claim>) repository.findAll();
+    int t = 0;
+    int f = 0;
+    for(Claim cl : lisclaim)
+    {
+    	if(cl.getEtat()==true)
+    	{
+    		t=t+1;
+    	}
+    	else{
+    		f=f+f;
+    	}
+    }
+    
+    return "Nbre Claim Traité sont :"+t+"\nNbre Claim traité sont :"+f;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
-	
-	
-	
-	
+}
+
 
 	
 	
