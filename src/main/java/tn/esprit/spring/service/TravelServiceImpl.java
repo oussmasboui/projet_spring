@@ -81,11 +81,9 @@ public class TravelServiceImpl implements ITravelService {
 
 	@Override
 	public void affecterTraveltoTraveler(Long idTravel, Long idUser) {
-		//opportunityRepo.save(op);
 		
 		User user= userRepo.findById(idUser).orElse(null);
-	//	List<TravelPlanning> tp =travplarepo.gettravelplanningsByIdTravel(t.getIdTravel());
-		//System.out.println(tp);
+
 		String mailt = user.getEmail();
 		 Travel t = travelRepo.getById(idTravel);
 		if (user.getRole().toString().equals("Traveler")) 
@@ -100,10 +98,6 @@ public class TravelServiceImpl implements ITravelService {
 	System.out.print("travel belong onely to Traveler");
 		
 		}
-		
-		
-		
-		
 		
 		
 	}

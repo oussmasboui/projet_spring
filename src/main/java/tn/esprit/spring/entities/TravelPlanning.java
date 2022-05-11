@@ -29,7 +29,7 @@ public class TravelPlanning {
 	private String description;
 	private String day;
 	
-
+	@JsonIgnore
 	@ManyToOne
 	private Travel travel;
 	

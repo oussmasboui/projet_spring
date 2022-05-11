@@ -8,7 +8,7 @@ import tn.esprit.spring.entities.TravelPlanning;
 public interface ITravelPlanningService {
 
 	public List<TravelPlanning> retrieveAllTravelsPlanning();
-	 TravelPlanning addTravelPlanning(TravelPlanning tp);
+	 TravelPlanning addTravelPlanning(TravelPlanning tp,long idtravel);
 	 void deleteTravelPlanning(Long idPlanning);
 	 void deleteAllTravelPlanning();
 	 TravelPlanning updateTravelPlanning(TravelPlanning tp);

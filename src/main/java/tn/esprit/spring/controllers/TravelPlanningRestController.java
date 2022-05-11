@@ -3,6 +3,7 @@ package tn.esprit.spring.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import tn.esprit.spring.service.ITravelPlanningService;
 
 @RestController 
 @RequestMapping("/travelplanning") 
+@CrossOrigin(origins = "*")
 public class TravelPlanningRestController {
 	@Autowired
 	ITravelPlanningService planningService;
@@ -33,11 +35,11 @@ public class TravelPlanningRestController {
 	 
 	 
 	// http://localhost:8089/SpringMVC/travelplanning/add-travelplanning
-	 @PostMapping("/add-travelplanning")
+	 @PostMapping("/add-travelplanning/{travel-id}")
 	 @ResponseBody
-	 public TravelPlanning addTravelPlanning(@RequestBody TravelPlanning tp) 
+	 public TravelPlanning addTravelPlanning(@RequestBody TravelPlanning tp,@PathVariable ("travel-id")  long idtravel) 
 	{
-		return planningService.addTravelPlanning(tp);
+		return planningService.addTravelPlanning(tp,idtravel);
 	 }
 	 
 	// http://localhost:8089/SpringMVC/travelplanning/removePlanning/{planning-id}

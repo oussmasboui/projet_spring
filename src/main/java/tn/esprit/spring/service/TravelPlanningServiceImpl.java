@@ -5,21 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entities.Travel;
 import tn.esprit.spring.entities.TravelPlanning;
 import tn.esprit.spring.repository.TravelPlanningRepository;
+import tn.esprit.spring.repository.TravelRepository;
 @Service
 public class TravelPlanningServiceImpl implements ITravelPlanningService{
 
 	@Autowired
 	TravelPlanningRepository planningRepo;
+	
+	@Autowired
+	TravelRepository travelRepo;
+	
 	@Override
 	public List<TravelPlanning> retrieveAllTravelsPlanning() {
 		// TODO Auto-generated method stub
 		return planningRepo.findAll();
 	}
 	@Override
-	public TravelPlanning addTravelPlanning(TravelPlanning tp) {
-		// TODO Auto-generated method stub
+	public TravelPlanning addTravelPlanning(TravelPlanning tp, long idtravel) {
+		Travel t = travelRepo.findById(idtravel).orElse(null);
+		tp.setTravel(t);
 		return planningRepo.save(tp);
 	}
 	@Override
